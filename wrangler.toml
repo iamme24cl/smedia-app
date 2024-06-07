@@ -1,0 +1,15 @@
+# wrangler.toml
+
+name = "smedia-app"
+type = "javascript"
+
+[build]
+command = "cd frontend && npm install && npm run build"
+[site]
+bucket = "./frontend/build"
+entry-point = "./frontend"
+
+account_id = "befd035ae3d29bfe27a12e705e26c94e"
+
+[vars]
+pages_build_output_dir = "frontend/build"
