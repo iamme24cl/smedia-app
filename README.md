@@ -1,6 +1,3 @@
-### Social Media App README.md
-
-```markdown
 # Social Media App
 
 ## Overview
@@ -23,24 +20,35 @@ The Social Media App is a dynamic platform enabling users to create profiles, po
 - **Material UI**: A popular React UI framework for building aesthetically pleasing and responsive user interfaces.
 - **Socket.io**: Used for real-time communication on the client side.
 
+## Application Images
+![User Profile](path/to/your/user_profile_image.png)
+*Caption: User profile page with options to edit profile and view posts.*
+
+![Posts Feed](path/to/your/posts_feed_image.png)
+*Caption: Feed displaying posts from various users with options to like, comment, and share.*
+
+![Real-time Messaging](path/to/your/real_time_messaging_image.png)
+*Caption: Real-time messaging interface allowing users to chat instantly.*
+
 ## Installation
 
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/yourusername/social-media-app.git
    cd social-media-app
+   ```
 
 2. **Backend Setup:**
-  ```bash
-  cd backend
-  source venv/bin/activate  # On Windows use `env\Scripts\activate`
-  pip install -r requirements.txt
-  python3 app.py
+   ```bash
+   cd backend
+   source venv/bin/activate  # On Windows use `env\Scripts\activate`
+   pip install -r requirements.txt
+   python3 app.py
+   ```
 
 3. **Frontend Setup:**
-  ```bash
-  cd frontend
-  npm install
-  npm start
-
-
+   ```bash
+   cd frontend
+   npm install
+   npm start
+   ```
