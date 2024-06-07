@@ -13,7 +13,7 @@ def create_app():
     app.config.from_object(config[env])
 
     # Initialize extensions
-    CORS(app, resources={r"/api/*": {"origins": "https://smedia-74l.pages.dev"}}, supports_credentials=True)
+    CORS(app, resources={r"/api/*": {"origins": "https://d311286a.smedia-app.pages.dev"}}, supports_credentials=True)
     jwt.init_app(app)
     socketio.init_app(app)  # Initialize SocketIO
 
