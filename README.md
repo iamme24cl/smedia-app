@@ -21,14 +21,17 @@ The Social Media App is a dynamic platform enabling users to create profiles, po
 - **Socket.io**: Used for real-time communication on the client side.
 
 ## Application Images
-![User Profile](path/to/your/user_profile_image.png)
-*Caption: User profile page with options to edit profile and view posts.*
+![Home page](media/homepage.jpg)
+*Caption: Homepage displaying sidebar, feed with posts fro various users with options to like, comment, and share.*
 
-![Posts Feed](path/to/your/posts_feed_image.png)
-*Caption: Feed displaying posts from various users with options to like, comment, and share.*
+![Homepage dark mode](media/homepage-dark.jpg)
+*Caption: Homepage displaying sidebar, feed with posts fro various users with options to like, comment, and share.*
 
-![Real-time Messaging](path/to/your/real_time_messaging_image.png)
-*Caption: Real-time messaging interface allowing users to chat instantly.*
+![New post form](media/post-form.jpg)
+*Caption: Post something*
+
+![New post form dark mode](media/post-form-dark.jpg)
+*Caption: Post something*
 
 ## Installation
 
