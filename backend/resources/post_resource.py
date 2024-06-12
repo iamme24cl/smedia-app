@@ -1,19 +1,32 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
+from sqlalchemy import desc
 from sqlalchemy.exc import SQLAlchemyError
+from werkzeug.utils import secure_filename
+import os
 from db import session
 from models.post import Post
 from models.like import Like
 
 post_bp = Blueprint('post_bp', __name__)
 
+UPLOAD_FOLDER = 'uploads/'
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
 @post_bp.route('/', methods=['POST'], endpoint='create_post')
 @jwt_required()
 def create_post():
-    data = request.json
     user_id = get_jwt_identity()
-    content = data.get('content')
-    image = data.get('image')
+    content = request.form.get('content')
+    file = request.files.get('image')
+
+    if file:
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(UPLOAD_FOLDER, filename))
+        image = os.path.join(UPLOAD_FOLDER, filename)
+    else:
+        image = None
     
     if not content:
         return jsonify({'message': 'Content is required.'}), 400
@@ -30,7 +43,7 @@ def create_post():
 @jwt_required()
 def get_posts():
     try:
-        posts = session.query(Post).all()
+        posts = session.query(Post).order_by(desc(Post.timestamp)).all()
         if posts:
             return jsonify([post.to_dict() for post in posts]), 200
         return jsonify({'message': 'No posts found.'}), 200

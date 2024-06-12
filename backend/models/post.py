@@ -22,5 +22,6 @@ class Post(Base):
             'image': self.image,
             'timestamp': self.timestamp.isoformat(),
             'comments': [comment.to_dict() for comment in self.comments],
-            'likes': [like.to_dict() for like in self.likes]
+            'likes': [like.to_dict() for like in self.likes],
+            'username': self.user.to_dict()
         }

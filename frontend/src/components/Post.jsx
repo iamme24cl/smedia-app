@@ -38,19 +38,25 @@ const Post = ({ post, user }) => {
     }
   };
 
+  const formatDate = (dateStr) => {
+    const date = new Date(dateStr);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+  }
+
   return (
     <Card sx={{ margin: "5px" }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ width: 30, height: 30 }} src={user.avatar} />
+          <Avatar sx={{ width: 30, height: 30 }} src={post.user.avatar} />
         }
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
-        title={user.name}
-        subheader="October 6, 2023"
+        title={post.user.name}
+        subheader={formatDate(post.timestamp)}
       />
       <CardMedia
         component="img"

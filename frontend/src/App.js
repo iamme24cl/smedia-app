@@ -63,7 +63,7 @@ function App() {
                       <Feed user={user} />
                       <Rightbar userId={user.id} />
                     </Stack>
-                    <Add />
+                    <Add user={user} />
                   </>
                 ) : (
                   <>

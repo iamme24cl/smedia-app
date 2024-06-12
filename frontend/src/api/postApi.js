@@ -32,5 +32,21 @@ const toggleLike = async (postId, liked) => {
     }
 };
 
+const createPost = async (postData) => {
+    try {
+        const token = localStorage.getItem('smedia-token');
+        const response = await axiosInstance.post('/posts/', postData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error creating post:', error);
+        throw error;
+    }
+};
 
-export { fetchPosts, toggleLike };
+
+export { fetchPosts, toggleLike, createPost };
