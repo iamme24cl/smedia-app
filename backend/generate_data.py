@@ -1,12 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from models.user import User
-from models.post import Post
-from models.comment import Comment
-from models.like import Like
-from models.message import Message
+from models import User, Post, Comment, Like, Message
 from faker import Faker
 from db import Base
+import random
 
 # Create a new engine instance
 engine = create_engine('sqlite:///smedia.db')
@@ -21,6 +18,7 @@ fake = Faker()
 
 def generate_fake_data():
     # Generate users
+    users = []
     for _ in range(10):
         user = User(
             name=fake.name(),
@@ -30,10 +28,21 @@ def generate_fake_data():
             avatar=fake.image_url(),
             bio=fake.text(),
             location=fake.city(),
-            joined_at=fake.date_time_this_decade()
+            joined_at=fake.date_time_this_decade(),
+            is_online=fake.boolean()
         )
         session.add(user)
         session.commit()  # Commit after adding each user to get user.id
+        users.append(user)
+
+    # Generate friends relationships
+    for user in users:
+        # Select 2-5 random friends for each user
+        friends = random.sample(users, random.randint(2, 5))
+        for friend in friends:
+            if friend != user:
+                user.friends.append(friend)
+        session.commit()
 
     # Generate posts
     for _ in range(30):
@@ -80,8 +89,12 @@ def generate_fake_data():
         session.commit()
 
 if __name__ == "__main__":
-    # Initialize the database (if not already initialized)
+    # Drop all tables
+    Base.metadata.drop_all(engine)
+    
+    # Create all tables
     Base.metadata.create_all(engine)
+    
     generate_fake_data()
 
     # Close the session
