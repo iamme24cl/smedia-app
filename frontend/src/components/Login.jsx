@@ -5,8 +5,8 @@ import login from "../api/authApi";
 
 const Login = ({ setAuth, setUser }) => {
     const [formData, setFormData] = useState({
-        username: '',
-        password: ''
+        username: 'dguerrero',
+        password: '%WUSjBwq)7'
     });
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -42,7 +42,7 @@ const Login = ({ setAuth, setUser }) => {
                 }}
             >
                 <Typography component={"h1"} variant="h5">
-                    Login
+                    Demo User Login
                 </Typography>
                 {error && <Typography color={"red"}>{error}</Typography>}
                 <Box component={"form"} onSubmit={handleSubmit} sx={{ mt: 1 }}>

@@ -61,7 +61,7 @@ function App() {
                     <Stack direction={"row"} spacing={2} justifyContent={"space-between"}>
                       <Sidebar mode={mode} setMode={setMode} />
                       <Feed user={user} />
-                      <Rightbar />
+                      <Rightbar userId={user.id} />
                     </Stack>
                     <Add />
                   </>

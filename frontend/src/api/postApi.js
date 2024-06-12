@@ -1,5 +1,5 @@
 import axiosInstance from './axiosConfig';
-import requests from './requests';  // Adjust the import path as needed
+import requests from './requests';  
 
 const fetchPosts = async () => {
     try {
