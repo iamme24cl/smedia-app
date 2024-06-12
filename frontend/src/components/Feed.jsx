@@ -5,7 +5,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import { fetchPosts } from '../api/postApi';
 
-const Feed = ({ user }) => {
+const Feed = ({ user, newPost }) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -24,7 +24,7 @@ const Feed = ({ user }) => {
     };
 
     getPosts();
-  }, [])
+  }, [newPost])
 
   if (loading) {
     return (

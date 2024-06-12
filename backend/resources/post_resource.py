@@ -17,16 +17,10 @@ if not os.path.exists(UPLOAD_FOLDER):
 @post_bp.route('/', methods=['POST'], endpoint='create_post')
 @jwt_required()
 def create_post():
+    data = request.get_json()
     user_id = get_jwt_identity()
-    content = request.form.get('content')
-    file = request.files.get('image')
-
-    if file:
-        filename = secure_filename(file.filename)
-        file.save(os.path.join(UPLOAD_FOLDER, filename))
-        image = os.path.join(UPLOAD_FOLDER, filename)
-    else:
-        image = None
+    content = data.get('content')
+    image = data.get('image')
     
     if not content:
         return jsonify({'message': 'Content is required.'}), 400

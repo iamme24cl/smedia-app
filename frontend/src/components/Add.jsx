@@ -36,33 +36,30 @@ const UserBox = styled(Box)({
     marginBottom: "20px",
 });
 
-const Add = ({ user }) => {
+const Add = ({ user, onNewPost }) => {
     const [open, setOpen] = useState(false);
     const [content, setContent] = useState('');
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [imagePreview, setImagePreview] = useState(null);
+    const [imageUrl, setImageUrl] = useState('');
+    const [showImageInput, setShowImageInput] = useState(false);
 
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setSelectedImage(file);
-            setImagePreview(URL.createObjectURL(file));
-        }
+    const handleImageUrlChange = (e) => {
+        const url = e.target.value;
+        setImageUrl(url);
     };
 
     const handlePost = async () => {
         try {
-            const formData = new FormData();
-            formData.append('userId', user.id); 
-            formData.append('content', content);
-            if (selectedImage) {
-                formData.append('image', selectedImage);
-            }
-            await createPost(formData);
+            const postData = {
+                userId: user.id,
+                content: content,
+                image: imageUrl
+            };
+            await createPost(postData);
             setOpen(false);
             setContent('');
-            setSelectedImage(null);
-            setImagePreview(null);
+            setImageUrl('');
+            setShowImageInput(false);
+            onNewPost();
         } catch (error) {
             console.error('Error creating post:', error);
         }
@@ -91,7 +88,7 @@ const Add = ({ user }) => {
             >
                 <Box
                     width={400}
-                    height={380}
+                    height={400}
                     bgcolor={"background.default"}
                     color={"text.primary"}
                     p={3}
@@ -106,7 +103,7 @@ const Add = ({ user }) => {
                             sx={{ width: 30, height: 30 }}
                         />
                         <Typography fontWeight={500} variant='span'>
-                            {user.username}
+                            {user.name}
                         </Typography>
                     </UserBox>
                     <TextField 
@@ -119,28 +116,29 @@ const Add = ({ user }) => {
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
                     />
-                    <Stack direction={"row"} gap={1} mt={2} mb={3}>
+                    <Stack direction={"row"} gap={1} mt={2} mb={3} alignItems="center">
                         <EmojiEmotions sx={{ cursor: "pointer" }} color="primary" />
-                        <input
-                            accept="image/*"
-                            type="file"
-                            id="upload-image"
-                            style={{ display: 'none' }}
-                            onChange={handleImageChange}
-                        />
-                        <label htmlFor="upload-image">
-                            <IconButton color="primary" aria-label="upload picture" component="span">
-                                <Image />
-                            </IconButton>
-                        </label>
+                        <IconButton 
+                            color="primary" 
+                            aria-label="add image URL" 
+                            component="span"
+                            onClick={() => setShowImageInput(!showImageInput)}
+                        >
+                            <Image />
+                        </IconButton>
                         <VideoCameraBack sx={{ cursor: "pointer" }} color="success" />
                         <PersonAdd sx={{ cursor: "pointer" }} color="error" />
                     </Stack>
-                    {imagePreview && (
-                        <Box>
-                            <img src={imagePreview} alt="Selected" style={{ width: '100%', marginBottom: '10px' }} />
-                        </Box>
+                    {showImageInput && (
+                        <TextField
+                            sx={{ width: "100%", marginBottom: "10px" }}
+                            placeholder="Enter image URL"
+                            variant='standard'
+                            value={imageUrl}
+                            onChange={handleImageUrlChange}
+                        />
                     )}
+                   
                     <ButtonGroup
                         fullWidth
                         variant='contained'

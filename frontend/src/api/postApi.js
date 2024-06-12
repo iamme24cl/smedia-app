@@ -37,7 +37,6 @@ const createPost = async (postData) => {
         const token = localStorage.getItem('smedia-token');
         const response = await axiosInstance.post('/posts/', postData, {
             headers: {
-                'Content-Type': 'multipart/form-data',
                 Authorization: `Bearer ${token}`
             }
         });

@@ -14,12 +14,17 @@ function App() {
   const [auth, setAuth] = useState(false);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [newPost, setNewPost] = useState(false);
 
   const darkTheme = createTheme({
     palette: {
       mode: mode
     }
   })
+
+  const handleNewPost = () => {
+    setNewPost(!newPost); // Toggle the newPost state to trigger useEffect in Feed
+  };
 
   useEffect(() => {
     const token = localStorage.getItem('smedia-token');
@@ -60,10 +65,10 @@ function App() {
                     <Navbar user={user} />
                     <Stack direction={"row"} spacing={2} justifyContent={"space-between"}>
                       <Sidebar mode={mode} setMode={setMode} />
-                      <Feed user={user} />
+                      <Feed user={user} newPost={newPost} />
                       <Rightbar userId={user.id} />
                     </Stack>
-                    <Add user={user} />
+                    <Add user={user} onNewPost={handleNewPost} />
                   </>
                 ) : (
                   <>
