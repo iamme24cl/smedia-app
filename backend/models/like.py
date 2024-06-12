@@ -19,3 +19,5 @@ class Like(Base):
             'user_id': self.user_id,
             'timestamp': self.timestamp.isoformat()
         }
+
+
