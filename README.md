@@ -59,3 +59,14 @@ Check out the live demo of the application [here](https://smedia-app.pages.dev).
    npm install
    npm start
    ```
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+
+### Contact Information
+Feel free to reach out.
+
+**Chandra Lama**  
+Email: iamme24cl@gmail.com  
+GitHub: [chandralama](https://github.com/chandralama)
