@@ -3,6 +3,10 @@
 ## Overview
 The Social Media App is a dynamic platform enabling users to create profiles, post updates, and interact with others. A key feature of the app is the ability for users to send messages to each other in real time, made possible by Socket.io integration.
 
+## Demo
+
+Check out the live demo of the Application [here](https://smedia-app.pages.dev).
+
 ## Features
 - User profile creation and management
 - Post updates and interact with other users' posts
