@@ -5,7 +5,7 @@ The Social Media App is a dynamic platform enabling users to create profiles, po
 
 ## Demo
 
-Check out the live demo of the Application [here](https://smedia-app.pages.dev).
+Check out the live demo of the application [here](https://smedia-app.pages.dev).
 
 ## Features
 - User profile creation and management
